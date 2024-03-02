@@ -172,6 +172,16 @@ pascal_sbd_dataset = dataset_base.copy({
     'class_names': PASCAL_CLASSES,
 })
 
+trashcan_dataset = dataset_base.copy({
+  'name': 'Trashcan 1.0',
+  'train_info': '/content/drive/MyDrive/YOLACT/trashcan/train/coco_annotations.json',
+  'train_images': '/content/drive/MyDrive/YOLACT/trashcan/train/images/',
+  'valid_info': '/content/drive/MyDrive/YOLACT/trashcan/val/coco_annotations.json',
+  'valid_images': '/content/drive/MyDrive/YOLACT/trashcan/val/images/',
+  'class_names': ('trashcan'),
+  'label_map': { 1:  1 }
+})
+
 
 
 
@@ -765,6 +775,16 @@ yolact_resnet50_pascal_config = yolact_resnet50_config.copy({
         'pred_scales': [[32], [64], [128], [256], [512]],
         'use_square_anchors': False,
     })
+})
+
+yolact_resnet50_trashcan_config = yolact_resnet50_config.copy({
+    'name': 'yolact_plus_resnet50_trashcan',
+    # Dataset stuff
+    'dataset': trashcan_dataset,
+    'num_classes': len(trashcan_dataset.class_names) + 1,
+
+    # Image Size
+    'max_size': 512,
 })
 
 # ----------------------- YOLACT++ CONFIGS ----------------------- #
